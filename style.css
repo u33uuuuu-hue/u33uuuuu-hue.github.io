@@ -1,0 +1,158 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #fff;
+    font-family: "Inter", sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ヘッダー設定 */
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 300;
+    padding: 20px 30px;
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 10px;
+
+    @media (max-width: 767px) {
+        padding-right: 20px;
+    }
+}
+
+.header ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header li {
+    list-style: none;
+}
+
+/* ボタン・リンク共通 */
+.header button,
+.header a,
+.header span {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+
+    color: #000;
+    text-decoration: none;
+    padding: 6px 12px;
+}
+
+/* アニメーション線 (下→右→上→左) */
+.header li.line button,
+.header li.line a {
+    --line-color: #000;
+    --line-width: 1px;
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(to right, var(--line-color), var(--line-color)),
+        /* 下 */
+        linear-gradient(to top, var(--line-color), var(--line-color)),
+        /* 右 */
+        linear-gradient(to left, var(--line-color), var(--line-color)),
+        /* 上 */
+        linear-gradient(to bottom, var(--line-color), var(--line-color));
+    /* 左 */
+    background-position: bottom left, bottom right, top right, top left;
+
+    /* 初期状態: 下線のみ表示 */
+    background-size: 100% var(--line-width), var(--line-width) 0%, 0% var(--line-width), var(--line-width) 0%;
+    transition: background-size 0.3s ease;
+}
+
+/* ホバー時のアニメーション */
+.header li.line button:hover,
+.header li.line a:hover {
+    background-size: 100% var(--line-width), var(--line-width) 100%, 100% var(--line-width), var(--line-width) 100%;
+    transition-delay: 0s, 0s, 0.15s, 0.3s;
+}
+
+/* Volumeボタン（ミュート時の線） */
+#volumeButton {
+    position: relative;
+}
+
+#volumeButton.muted::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+
+
+/* キャンバス & コンテンツ */
+canvas#c {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+    /* 入力を邪魔しない */
+}
+
+/* 漂う文字 */
+.floating-text {
+    position: absolute;
+    font-size: 18px;
+    color: #000;
+    white-space: nowrap;
+    user-select: none;
+    z-index: 110;
+    pointer-events: none;
+}
+
+/* 入力エリア */
+#ui-layer {
+    position: fixed;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 200;
+    pointer-events: none;
+}
+
+#textInput {
+    pointer-events: auto;
+    width: 300px;
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: center;
+    border: none;
+    border: 1px solid #000;
+    background: transparent;
+    outline: none;
+    font-family: "Inter", sans-serif;
+    transition: 0.3s;
+}
+
+#textInput:focus {
+    border-width: 1px;
+}

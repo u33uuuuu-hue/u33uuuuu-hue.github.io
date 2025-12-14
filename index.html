@@ -1,0 +1,66 @@
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1, maximum-scale=1">
+
+    <title>消極的な共感</title>
+
+    <!--webについての情報-->
+    <meta name="medium" content="archive">
+    <meta name="build" content="2025-12-16" />
+    <meta name="author" content="kato nonoka" />
+
+    <!--検索に出さない！-->
+    <meta name="robots" content="none">
+    <meta name="googlebot" content="none">
+    <meta name="pinterest" content="nopin" />
+
+    <meta http-equiv="x-dns-prefetch-control" content="">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <ul>
+            <li>
+                <a href="#" class="top_page">
+                    top
+                </a>
+            </li>
+            <li class="line"><a href="about.html" class="about_page">
+                    about
+                </a></li>
+            <li class="line">
+                <button id="resetButton">delete</button>
+            </li>
+            <li class="line">
+                <button id="volumeButton">volume</button>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <canvas id="c"></canvas>
+
+        <div id="ui-layer">
+            <input id="textInput" placeholder="こんにちは" autocomplete="off">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
