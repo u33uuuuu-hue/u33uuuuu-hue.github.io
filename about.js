@@ -7,7 +7,7 @@ const imageData = [
     { src: "img/4.png", pos: "center" },
     { src: "img/5.png", pos: "center" },
     { src: "img/6.png", pos: "top" },
-    { src: "img/7.png", pos: "center" }
+    { src: "img/7.jpeg", pos: "center" }
 ];
 
 const mainImage = document.getElementById('mainImage');
