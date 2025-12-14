@@ -215,7 +215,7 @@ body {
     position: absolute;
 
     /* 【重要1】「左(left)」基準をやめて、「右(right)」基準にする */
-    right: 0;
+    right: 12;
     left: auto;
 
     /* 【重要2】回転の軸も「右下（お尻）」にする */
