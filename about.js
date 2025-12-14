@@ -2,7 +2,7 @@
 
 const imageData = [
     { src: "img/1.png", pos: "center" },
-    { src: "img/2.png", pos: "top" },    // この画像は上を基準にトリミング
+    { src: "img/2.jpeg", pos: "top" },    // この画像は上を基準にトリミング
     { src: "img/3.png", pos: "top" }, // この画像は下を基準にトリミング
     { src: "img/4.png", pos: "center" },
     { src: "img/5.png", pos: "center" },
