@@ -1,0 +1,1353 @@
+@charset "utf-8";
+
+/*@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');*/
+
+
+body {
+    margin: 0;
+
+    background: #fff;
+    font-family: "Inter", sans-serif;
+    width: 100vw;
+    position: relative;
+    color: #08131a;
+    overflow-x: hidden;
+
+}
+
+/*header*/
+
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999999;
+    padding: 0px 10px;
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 10px;
+
+    @media (max-width: 767px) {
+        padding-right: 5px;
+
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+}
+
+.header ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+
+    @media (max-width: 767px) {
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 20px;
+    }
+
+}
+
+.header li {
+    list-style: none;
+}
+
+/* ボタン・リンク共通 */
+.header button,
+.header a,
+.header span {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+
+    color: #000;
+    text-decoration: none;
+    padding: 6px 12px;
+}
+
+/* アニメーション線 (下→右→上→左) */
+.header li.line button,
+.header li.line a {
+    --line-color: #000;
+    --line-width: 1px;
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(to right, var(--line-color), var(--line-color)),
+        /* 下 */
+        linear-gradient(to top, var(--line-color), var(--line-color)),
+        /* 右 */
+        linear-gradient(to left, var(--line-color), var(--line-color)),
+        /* 上 */
+        linear-gradient(to bottom, var(--line-color), var(--line-color));
+    /* 左 */
+    background-position: bottom left, bottom right, top right, top left;
+
+    /* 初期状態: 下線のみ表示 */
+    background-size: 100% var(--line-width), var(--line-width) 0%, 0% var(--line-width), var(--line-width) 0%;
+    transition: background-size 0.3s ease;
+}
+
+/* ホバー時のアニメーション */
+.header li.line button:hover,
+.header li.line a:hover {
+    background-size: 100% var(--line-width), var(--line-width) 100%, 100% var(--line-width), var(--line-width) 100%;
+    transition-delay: 0s, 0s, 0.15s, 0.3s;
+}
+
+/* Volumeボタン（ミュート時の線） */
+#volumeButton {
+    position: relative;
+}
+
+#volumeButton.muted::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/*index*/
+
+.indexback {
+    width: 41px;
+    height: 110%;
+    position: fixed;
+    background-color: #fff;
+    right: 0;
+    top: -10;
+    z-index: 999;
+}
+
+.hereback {
+    width: 130px;
+    height: 50px;
+    position: fixed;
+    right: 0;
+    top: 60px;
+    z-index: 99;
+    background-color: #fff;
+
+    @media (max-width: 767px) {
+        top: 50px;
+        height: 35px;
+        width: 143.5px;
+    }
+
+}
+
+.index {
+    position: fixed;
+    top: 100px;
+    right: -780px;
+    color: #d0d0d1;
+    z-index: 999;
+
+    @media (max-width: 767px) {
+        top: 75;
+    }
+
+}
+
+.index01 {
+
+    margin: 10px;
+    margin-top: 0px;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    background-color: #fff;
+
+    @media (max-width: 767px) {
+        margin: 0px;
+        margin-left: -100px;
+        text-align: left;
+
+    }
+
+}
+
+.index01 ul {
+    display: flex;
+
+    gap: 25px;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    padding-left: 0;
+
+
+}
+
+.index01 ul li {
+    list-style: none;
+    position: relative;
+
+
+
+}
+
+.index ul li a {
+    text-decoration: none;
+    color: #d0d0d1;
+    display: block;
+    transition: color 0.3s;
+}
+
+.here a {
+    color: transparent !important;
+    position: relative;
+}
+
+.here a::before {
+    content: attr(data-text);
+    position: absolute;
+
+    /* 【重要1】「左(left)」基準をやめて、「右(right)」基準にする */
+    right: 0;
+    left: auto;
+
+    /* 【重要2】回転の軸も「右下（お尻）」にする */
+    transform-origin: right bottom;
+
+    /* 回転させる */
+    transform: rotate(-90deg);
+
+    /* 【重要3】位置の微調整 */
+    /* 回転しているので、この bottom が「横方向（文字とリストの距離）」の調整になります */
+    /* -5px 〜 -10px くらいで調整してください */
+    bottom: 10px;
+
+    color: #08131a;
+    white-space: nowrap;
+    pointer-events: none;
+
+    @media (max-width: 767px) {
+        right: 0px;
+        z-index: 999999;
+    }
+
+
+}
+
+
+/*本文*/
+
+.container {
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+
+    /* position: absolute;
+    left: 50%;
+    transform: translateX(-50%);*/
+    @media (max-width: 767px) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    @media (max-width: 767px) {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 60px;
+    }
+
+}
+
+
+
+
+.logo {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-weight: 100;
+    margin: 10px;
+    margin-bottom: 30px;
+    font-size: 22px;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+.logo img {
+    width: 300px;
+
+    @media (max-width: 767px) {
+        width: 200px;
+    }
+}
+
+.switch {
+    font-size: 16px;
+    width: 190px;
+    margin: 10px;
+    margin-bottom: 30px;
+
+
+    @media (max-width: 1024px) {
+        justify-content: left;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        z-index: 999;
+        font-size: 16px;
+        width: 190px;
+    }
+
+    @media (max-width: 767px) {
+        margin-bottom: 10px;
+
+        margin-top: 20px;
+        font-size: 16px;
+        width: 190px;
+    }
+}
+
+.switch ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+
+    font-weight: 200;
+    background-color: #d0d0d1;
+
+    padding: 5px;
+    border-radius: 15rem;
+}
+
+
+
+.on {
+    background-color: #fff;
+    border-radius: 15rem;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.text {
+    margin: 11px;
+    margin-right: 110px;
+
+    @media (max-width: 767px) {
+        margin-right: 60px;
+    }
+}
+
+.t1 {
+    margin-bottom: 20px;
+
+
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+
+    @media (max-width: 767px) {
+        flex-wrap: wrap;
+    }
+
+}
+
+.text .h3 {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.t1 .h4 {
+    width: 100%;
+    margin-top: 5px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/*文字サイズ*/
+
+.h1 {
+    font-size: 22px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.h25 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.h3 {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.h4 {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.linktext {
+    border-bottom: 1px solid #000;
+}
+
+/*文字スペース*/
+
+.ue {
+    font-size: 0.8em;
+    vertical-align: top;
+}
+
+.space1 {
+    margin-bottom: 20px;
+}
+
+.spaced {
+    margin-bottom: 20px;
+
+    @media (max-width: 1024px) {
+        margin-bottom: 10px;
+    }
+}
+
+.inlibro {
+    display: inline-block;
+}
+
+/*background*/
+
+.background {
+    display: flex;
+
+    @media (max-width: 1024px) {
+        display: block;
+    }
+}
+
+
+
+.chart {
+    position: relative;
+    width: 590px;
+
+    margin: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #000;
+
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-left: 0px;
+        border: 1px solid transparent;
+        margin-bottom: 20px;
+    }
+}
+
+.boxu {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    @media (max-width: 767px) {
+        border: 1px solid #000;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0px;
+        flex-direction: column;
+    }
+}
+
+.boxu ul {
+    font-weight: 300;
+    line-height: 2;
+
+    @media (max-width: 767px) {
+        line-height: 1.5;
+
+        font-size: 14px;
+    }
+}
+
+.boxd {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    @media (max-width: 767px) {
+        border: 1px solid #000;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0px;
+        flex-direction: column;
+    }
+
+}
+
+.boxd ul {
+    font-weight: 300;
+    line-height: 2;
+
+    @media (max-width: 767px) {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}
+
+.chlu {
+    width: 50%;
+
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.chru {
+    width: 50%;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+}
+
+.chru .h3 {
+    @media (max-width: 767px) {
+        font-size: 14px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+}
+
+.chld {
+    width: 50%;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+
+    @media (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 20px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+}
+
+.chrd {
+    width: 50%;
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+}
+
+.chrd .h3 {
+    @media (max-width: 767px) {
+        font-size: 14px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+}
+
+.yajirusi {
+    align-content: center;
+    margin: 20px;
+
+    @media (max-width: 1024px) {
+        color: transparent;
+        height: 0%;
+        margin: 0;
+
+    }
+
+
+}
+
+.bgtext {
+    align-content: center;
+    margin: 10px;
+    line-height: 2;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: left;
+
+    @media(max-width: 1024px) {
+        margin-top: -20px;
+        margin-bottom: 50px;
+    }
+
+    @media (max-width: 767px) {
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+
+}
+
+/*research*/
+
+
+.recontent {
+    margin: 10px;
+    margin-top: 20px;
+    display: flex;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+
+}
+
+.reitem {
+    margin-right: 50px;
+    margin-bottom: 10px;
+}
+
+
+.reitem ul {
+    margin-top: 10px;
+    padding: 10px;
+    width: 240px;
+    border: 1px solid #000;
+    line-height: 25px;
+    list-style-type: "・";
+    padding-left: 25px;
+}
+
+.reitemtext2 {
+    margin-top: 10px;
+    width: 240px;
+}
+
+.reitem03 {
+    width: 240px;
+}
+
+.reitemurl {
+    margin-top: 10px;
+
+    width: 100%;
+    overflow-wrap: break-word;
+
+}
+
+.reitemurl .h4 {
+    border-bottom: 1px solid #08131a;
+    line-height: 16px;
+    color: #08131a;
+}
+
+.reitemtext3 {
+    margin-top: 10px;
+}
+
+/*prototype*/
+
+.p5 ul {
+    display: flex;
+    gap: 5rem;
+    flex: 1;
+    line-height: 1.5;
+
+    @media(max-width: 1024px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 3rem;
+        row-gap: 15px;
+        padding: 0;
+        margin-left: 5px;
+        margin-right: 50px;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.p5 ul li .h1 {
+    margin-bottom: 10px;
+
+}
+
+.p5 ul li a video {
+    width: 100%;
+    border: #000 1px solid;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        margin-left: 10;
+        margin-right: 10;
+        margin-bottom: 5;
+
+    }
+
+}
+
+
+
+.prototext {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/*feedback*/
+.feed ul {
+    margin-top: 5px;
+    line-height: 25px;
+    padding-bottom: 10px;
+    list-style-type: "・";
+    padding-left: 25px;
+}
+
+.feed ul li {
+
+    margin-bottom: 10px;
+}
+
+/*system*/
+
+.system .h1 {
+    margin-top: 20px;
+}
+
+.system .h3 {
+    margin-bottom: 20px;
+}
+
+/*sketch*/
+.sketch ul {
+    display: flex;
+    /* gap: 10px;*/
+    flex-wrap: wrap;
+
+    @media (max-width: 1480px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 3rem;
+        row-gap: 30px;
+    }
+
+    @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.skt02 {
+    margin: 0px 100px 0px -80px;
+
+    @media (max-width: 1480px) {
+        margin: 0;
+    }
+}
+
+.skt03 {
+    margin: 0px 50px 0px -50px;
+    position: relative;
+
+    @media (max-width: 1480px) {
+        margin: 0;
+
+    }
+}
+
+.skt04 {
+    margin: 0px 0px 0px 50px;
+    position: relative;
+
+    @media (max-width: 1480px) {
+        margin: 0;
+    }
+}
+
+.skt02 .h3 {
+    width: 300px;
+}
+
+.skt03text {
+    margin-top: 217px;
+
+
+    @media (max-width: 767px) {
+        margin-top: 44vw;
+    }
+}
+
+.skt04text {
+    margin-top: 300px;
+
+    @media (max-width: 860px) {
+        margin-top: 220px;
+    }
+
+    @media (max-width: 767px) {
+        margin-top: 60vw;
+    }
+
+}
+
+.sketch img {
+    width: 200px;
+}
+
+.skt02img {
+    display: flex;
+}
+
+.skt02img img {
+    width: 150px;
+}
+
+.skt03 img {
+    width: 300px;
+    position: absolute;
+
+    @media (max-width: 860px) {
+        width: 250px;
+    }
+
+    @media (max-width: 767px) {
+
+        width: 50vw;
+    }
+}
+
+/*上右下左*/
+
+.simg.is-active {
+    z-index: 100 !important;
+    margin: 0px 0px 0px 0px !important;
+}
+
+#s3aimg {
+    margin: 0px 0px 0px 80px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/*
+#s3aimg:active {
+    z-index: 100;
+    margin: 0px 0px 0px 0px !important;
+}
+*/
+#s3bimg {
+    margin: 0px 0px 0px 60px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/*
+#s3bimg:active {
+    z-index: 100;
+    margin: 0px 0px 0px 0px;
+}*/
+
+#s3cimg {
+    margin: 0px 0px 0px 40px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/*
+#s3cimg:active {
+    z-index: 100;
+    margin: 0px 0px 0px 0px;
+}
+*/
+#s3dimg {
+    margin: 0px 0px 0px 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/*
+#s3dimg:active {
+    z-index: 100;
+    margin: 0px 0px 0px 0px;
+}*/
+
+#s3eimg {
+    margin: 0px 0px 0px 0px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/*
+#s3eimg:active {
+    z-index: 100;
+    margin: 0px 0px 0px 0px;
+}*/
+
+.skt04 img {
+    width: 200px;
+    position: absolute;
+
+    @media (max-width: 860px) {
+        width: 150px;
+    }
+
+    @media (max-width: 767px) {
+
+        width: 40vw;
+    }
+}
+
+#s4aimg {
+    margin: 0px 0px 0px 60px;
+    transition: all 0.3s ease;
+    position: relative;
+
+}
+
+#s4aimg img {
+    width: 300px;
+
+    @media (max-width: 860px) {
+        width: 250px;
+    }
+
+    @media (max-width: 767px) {
+
+        width: 60vw;
+    }
+}
+
+#s4bimg {
+    margin: 0px 0px 0px 0px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#s4bimg img {
+    width: 300px;
+
+    @media (max-width: 860px) {
+        width: 250px;
+    }
+
+
+    @media (max-width: 767px) {
+
+        width: 60vw;
+    }
+}
+
+#s4cimg {
+    margin: 0px 0px 0px 50px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#s4dimg {
+    margin: 0px 0px 0px 0px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+
+/*exhibition*/
+.exhibition .h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.exu {
+    display: flex;
+}
+
+.ex01 {
+    margin: 10px 20px;
+}
+
+.ex01 img {
+    width: 400px;
+}
+
+.ex023 {
+    display: flex;
+    gap: 10px;
+    margin: 0px 0px 0px 10px;
+}
+
+.ex023 img {
+    width: 200px;
+
+}
+
+.exhibition .h3 {
+    margin: 10px 0px 10px 10px;
+    width: 800px;
+
+    @media (max-width: 767px) {
+        margin-top: 20px;
+    }
+}
+
+/*ca*/
+.exu-sp {
+    display: none;
+}
+
+/* PC用レイアウト設定 */
+
+
+/* --- スマホ・タブレットサイズ (1024px以下) --- */
+@media (max-width: 970px) {
+
+    /* PC用を隠す */
+    .exu {
+        display: none;
+    }
+
+    /* スマホ用カルーセルを表示 */
+    .exu-sp {
+        display: flex;
+        /* carwraの元の指定に合わせる */
+    }
+}
+
+/* =========================================
+   自作カルーセルのスタイル (いただいたコードの調整版)
+   ========================================= */
+
+.carwra {
+    /* PCでは非表示なので、ここでの指定はスマホ表示時のものになります */
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+    width: 100%;
+    margin-left: 10px;
+
+}
+
+
+
+@media (max-width: 970px) {
+    .carwra {
+        margin-top: -20px;
+        margin-left: -10px;
+        margin-right: 0px;
+    }
+}
+
+/* カルーセル本体 */
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* デフォルトサイズ */
+    width: 60vw;
+    height: 50vw;
+    /* margin: 0 auto;*/
+    margin-left: 20px;
+
+}
+
+@media (max-width: 767px) {
+    .carousel {
+        width: 90vw;
+        height: 90vw;
+        justify-content: center;
+    }
+}
+
+/* ボタン */
+.before_btn,
+.next_btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.before_btn button,
+.next_btn button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+    padding: 10px;
+}
+
+.before_btn {
+    left: -10px;
+}
+
+.next_btn {
+    right: -10px;
+}
+
+
+/* 画像エリア */
+.carousel .img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* 上下中央揃えのため */
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.carousel .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 画像全体を表示 */
+    display: block;
+}
+
+/* インジケーター */
+.indicator {
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    bottom: -50px;
+    /* 位置調整 */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.rect {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    background: transparent;
+    cursor: pointer;
+}
+
+.rect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 9px;
+    height: 9px;
+    border: 3px solid #000;
+    background: transparent;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.rect.active::after {
+    opacity: 1;
+}
+
+
+
+/*review*/
+.review {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.review .h1 {
+    margin-top: 30px;
+}
+
+.review ul li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    width: 100%;
+
+    @media (max-width: 767px) {
+        padding-left: 1em;
+        /* 1文字分（・の分）左に隙間を作る */
+        text-indent: -1em;
+    }
+
+}
+
+.review .h3 li {
+
+    width: 100%;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+
+    @media (max-width: 767px) {
+        word-break: break-all;
+        /* または break-all */
+        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+}
+
+/*comment*/
+
+.comment {
+    margin-top: 30px;
+}
+
+.comtext {
+    /* line-break: strict;
+    hyphens: auto;*/
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+
+}
+
+
+/*footer*/
+.footer {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 30px;
+    color: #fff;
+
+    @media (max-width: 767px) {
+
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 50px;
+    }
+
+
+}
+
+.footerback {
+    width: 100vw;
+    background-color: #d0d0d1;
+    padding-top: 10px;
+    z-index: 9999;
+    position: relative;
+}
+
+.fcontent {
+    display: flex;
+    flex: 1;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+}
+
+.footer img {
+    width: 250px;
+
+}
+
+.flogo {
+    /*display: flex;*/
+    align-items: baseline;
+    gap: 10px;
+
+    padding: 10px;
+    padding-bottom: 30px;
+
+    @media (max-width: 767px) {
+        padding-bottom: 20px;
+        padding-left: 0px;
+        padding-top: 0px;
+
+    }
+
+
+}
+
+.fcopy {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 200;
+    margin-left: 5px;
+}
+
+.sitemap1 {
+    width: 100%;
+    margin-left: 80px;
+    padding-top: 30px;
+    border-top: #fff 1px solid;
+
+    @media (max-width: 767px) {
+        margin-left: 10px;
+        padding-top: 20px;
+    }
+
+}
+
+.smcontent {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+
+
+}
+
+.sm1 {
+    flex: 1;
+    font-size: 20px;
+    text-align: center;
+
+    @media (max-width: 767px) {
+        text-align: start;
+        flex: auto;
+    }
+
+}
+
+
+.sm1 ul {
+    display: inline-block;
+    /* 重要：リストを「中身の幅に合わせたブロック」にする */
+    text-align: left;
+}
+
+.smbg {
+    margin-top: 5px;
+    font-size: 16px;
+    gap: 10px;
+    line-height: 25px;
+
+
+    /* list-style-type: "・";
+    padding-left: 15px;*/
+}

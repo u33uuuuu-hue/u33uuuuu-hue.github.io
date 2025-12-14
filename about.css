@@ -1,0 +1,652 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+
+
+body {
+    margin: 0;
+    overflow: auto;
+    overflow-x: hidden;
+    background: #fff;
+    font-family: "Inter", sans-serif;
+    width: 100vw;
+    position: relative;
+
+
+
+}
+
+/* ヘッダー設定 */
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 300;
+    padding: 0px 10px;
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 10px;
+
+    @media (max-width: 1024px) {
+        padding-right: 5px;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+}
+
+.header ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+
+    @media (max-width: 767px) {
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-bottom: 15px;
+    }
+}
+
+.header li {
+    list-style: none;
+}
+
+/* ボタン・リンク共通 */
+.header button,
+.header a,
+.header span {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+
+    color: #000;
+    text-decoration: none;
+    padding: 6px 12px;
+}
+
+/* アニメーション線 (下→右→上→左) */
+.header li.line button,
+.header li.line a {
+    --line-color: #000;
+    --line-width: 1px;
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(to right, var(--line-color), var(--line-color)),
+        /* 下 */
+        linear-gradient(to top, var(--line-color), var(--line-color)),
+        /* 右 */
+        linear-gradient(to left, var(--line-color), var(--line-color)),
+        /* 上 */
+        linear-gradient(to bottom, var(--line-color), var(--line-color));
+    /* 左 */
+    background-position: bottom left, bottom right, top right, top left;
+
+    /* 初期状態: 下線のみ表示 */
+    background-size: 100% var(--line-width), var(--line-width) 0%, 0% var(--line-width), var(--line-width) 0%;
+    transition: background-size 0.3s ease;
+}
+
+/* ホバー時のアニメーション */
+.header li.line button:hover,
+.header li.line a:hover {
+    background-size: 100% var(--line-width), var(--line-width) 100%, 100% var(--line-width), var(--line-width) 100%;
+    transition-delay: 0s, 0s, 0.15s, 0.3s;
+}
+
+/* Volumeボタン（ミュート時の線） */
+#volumeButton {
+    position: relative;
+}
+
+#volumeButton.muted::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.container {
+    margin-top: 80px;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-sizing: border-box;
+    /*  width: 100%;*/
+    display: flex;
+    position: relative;
+
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 89vh;
+    padding-bottom: 50px;
+
+    @media (max-width: 1024px) {
+
+        flex-direction: column;
+        justify-content: center;
+        left: 0;
+        transform: translateX(0%);
+        margin-left: 0px;
+        margin-right: 0px;
+        height: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    @media (max-width: 767px) {
+        margin-left: 0px;
+        width: 100%;
+        margin-right: 0px;
+        margin-top: 50px;
+        padding-left: 10px;
+        padding-right: 0px;
+
+    }
+
+
+
+}
+
+.left {
+    @media (max-width: 1024px) {
+        display: contents;
+
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-weight: 100;
+    margin: 10px;
+    margin-bottom: 30px;
+    font-size: 22px;
+
+    @media (max-width: 1024px) {
+        font-size: 22px;
+        order: 1;
+        width: 100%;
+        margin-left: 30px;
+        justify-content: left;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+    }
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+    }
+
+
+
+
+
+}
+
+.logo img {
+    width: 300px;
+
+    @media (max-width: 1024px) {
+        width: 300px;
+    }
+
+    @media (max-width: 767px) {
+        width: 250px;
+    }
+}
+
+.switch {
+    font-size: 16px;
+    width: 190px;
+    margin: 10px;
+    margin-bottom: 30px;
+
+
+    @media (max-width: 1024px) {
+        order: 2;
+        justify-content: left;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        z-index: 999;
+        font-size: 16px;
+        width: 190px;
+        margin-left: 30px;
+    }
+
+    @media (max-width: 767px) {
+        margin-bottom: 10px;
+
+        margin-left: 20px;
+        font-size: 16px;
+        width: 190px;
+    }
+
+}
+
+.switch ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+    font-weight: 200;
+    background-color: #d0d0d1;
+
+    padding: 5px;
+    border-radius: 15rem;
+
+
+
+}
+
+.on {
+    background-color: #fff;
+    border-radius: 15rem;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+
+}
+
+
+.text {
+    font-size: 16px;
+    font-weight: 300;
+    width: 45vw;
+
+    margin-bottom: 10px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
+    margin-left: 10px;
+
+    @media (max-width: 1024px) {
+        order: 4;
+        width: 90%;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.5;
+        margin-bottom: 5px;
+        margin-top: 20px;
+        margin-left: 30px;
+
+
+    }
+
+}
+
+.date {
+    font-weight: 200;
+    font-size: 16px;
+    margin-left: 10px;
+
+    @media (max-width: 1024px) {
+        order: 5;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        margin-left: 30px;
+
+    }
+}
+
+.carwra {
+    @media (max-width: 1024px) {
+        order: 3;
+        justify-content: center;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        display: flex;
+    }
+
+    @media (max-width: 767px) {
+        margin-top: 10px;
+        margin-left: -10px;
+        margin-right: 0px;
+    }
+}
+
+
+.carousel {
+
+    width: 40vw;
+    /*  height: 30vw;*/
+    height: auto;
+    margin-top: 50px;
+    margin-left: 50px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    @media (max-width: 1024px) {
+        width: 80vw;
+        height: 50vw;
+        margin-top: 0%;
+        margin-left: 0px;
+
+        text-align: center;
+
+        flex-direction: column;
+
+        justify-content: center;
+    }
+
+    @media (max-width: 767px) {
+        width: 90vw;
+        height: auto;
+        margin-top: 0px;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+
+    }
+
+}
+
+.before_btn,
+.next_btn {
+
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    @media (max-width: 767px) {
+        font-size: 16px;
+    }
+}
+
+.before_btn {
+
+    left: -30px;
+
+    @media (max-width: 767px) {
+        margin-left: 20px;
+    }
+
+}
+
+
+.next_btn {
+
+    right: -30px;
+
+    @media (max-width: 767px) {
+        margin-right: 20px;
+    }
+
+}
+
+.carousel .img {
+    margin: 30px;
+    width: 100%;
+    height: 30vw;
+    text-align: center;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @media (max-width:1024px) {
+        margin: 50px;
+        margin-bottom: 0px !important;
+        margin-top: 0px;
+        width: auto;
+        height: 100%;
+        object-fit: cover;
+        text-align: start;
+
+    }
+
+    @media (max-width: 767px) {
+        margin: 0px auto;
+        width: 100%;
+        height: 100%;
+        margin-left: 5%;
+
+    }
+
+}
+
+.carousel .img img {
+    width: 100%;
+    height: 100%;
+
+    /* 🌟 変更点2: ここを 'cover' から 'contain' に変える */
+    /* cover: 枠を埋め尽くす（はみ出たら切る） */
+    /* contain: 縦横比を維持して、全体が収まるようにする（余白ができる）*/
+    object-fit: contain;
+
+    display: block;
+
+    @media (max-width:1024px) {
+        height: 100%;
+        width: auto;
+    }
+
+    @media (max-width: 767px) {
+        width: 90%;
+        height: auto;
+        max-width: 90%;
+    }
+
+
+}
+
+.indicator {
+    width: 100%;
+    height: 30px;
+
+    position: relative;
+    left: 0;
+    bottom: -18%;
+    display: flex;
+    justify-content: center;
+    /* 中央揃え */
+    gap: 10px;
+    /* 四角同士の間隔 */
+    margin-top: 20px;
+
+
+    @media (max-width:1024px) {
+        position: static;
+        bottom: auto;
+        left: auto;
+        margin-top: 20px;
+
+    }
+}
+
+.rect {
+
+    position: relative;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+
+    background: transparent;
+
+    @media (max-width:1024px) {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.rect::after {
+    content: '';
+    position: absolute;
+
+    /* 真ん中に配置 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* サイズを少し小さくする */
+    width: 10px;
+    height: 10px;
+
+    border: 3px solid #000;
+    /* 🌟内側の太い線(3px) */
+
+    background: transparent;
+    /* 中身は透明 */
+    box-sizing: border-box;
+
+
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.rect.active::after {
+    opacity: 1;
+    border-radius: 0;
+}
+
+
+
+/*footer*/
+.footer {
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 30px;
+    color: #fff;
+
+    @media (max-width: 767px) {
+
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 50px;
+    }
+
+
+
+}
+
+.footerback {
+    width: 100%;
+    background-color: #d0d0d1;
+    padding-top: 10px;
+    z-index: 9999;
+    position: relative;
+    bottom: 0;
+
+}
+
+.fcontent {
+    display: flex;
+    flex: 1;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+
+}
+
+.footer img {
+    width: 250px;
+
+}
+
+.flogo {
+    /*display: flex;*/
+    align-items: baseline;
+    gap: 10px;
+
+    padding: 10px;
+    padding-bottom: 30px;
+
+    @media (max-width: 767px) {
+        padding-bottom: 20px;
+        padding-left: 0px;
+        padding-top: 0px;
+
+    }
+
+}
+
+.fcopy {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 200;
+    margin-left: 5px;
+}
+
+.sitemap1 {
+    width: 100%;
+    margin-left: 80px;
+    padding-top: 30px;
+    border-top: #fff 1px solid;
+
+    @media (max-width: 767px) {
+        margin-left: 10px;
+        padding-top: 20px;
+    }
+
+
+}
+
+.smcontent {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+
+
+}
+
+.sm1 {
+    flex: 1;
+    font-size: 20px;
+    text-align: center;
+
+    @media (max-width: 767px) {
+        text-align: start;
+        flex: auto;
+    }
+
+}
+
+
+.sm1 ul {
+    display: inline-block;
+    /* 重要：リストを「中身の幅に合わせたブロック」にする */
+    text-align: left;
+}
+
+.smbg {
+    margin-top: 5px;
+    font-size: 16px;
+    gap: 10px;
+    line-height: 25px;
+
+
+    /* list-style-type: "・";
+    padding-left: 15px;*/
+}
