@@ -92,8 +92,17 @@ body {
     background-position: bottom left, bottom right, top right, top left;
 
     /* 初期状態: 下線のみ表示 */
-    background-size: 100% var(--line-width), var(--line-width) 0%, 0% var(--line-width), var(--line-width) 0%;
+    background-size: 0% var(--line-width), var(--line-width) 0%, 0% var(--line-width), var(--line-width) 0%;
     transition: background-size 0.3s ease;
+}
+.header li:not(.line) a,
+.header li:not(.line) button {
+    text-decoration: none;
+    /* 常に下線がある状態を作る */
+    background-image: linear-gradient(to right, #000, #000);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
 }
 
 /* ホバー時のアニメーション */
