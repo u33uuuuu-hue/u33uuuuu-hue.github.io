@@ -8,8 +8,8 @@
 body {
     margin: 0;
     overflow: hidden;
-    background: #fff;
-    font-family: "Inter", sans-serif;
+    background: #f8f8f8;
+    font-family: "futura-100-book", "Inter", sans-serif;
     width: 100vw;
     height: 100vh;
 }
@@ -76,6 +76,15 @@ body {
     background-size: 0% var(--line-width), var(--line-width) 0%, 0% var(--line-width), var(--line-width) 0%;
     transition: background-size 0.3s ease;
 }
+
+/* ホバー時のアニメーション */
+.header li.line button:hover,
+.header li.line a:hover {
+    background-size: 100% var(--line-width), var(--line-width) 100%, 100% var(--line-width), var(--line-width) 100%;
+    transition-delay: 0s, 0s, 0.15s, 0.3s;
+}
+
+/*いる場所に下線*/
 .header li:not(.line) a,
 .header li:not(.line) button {
     text-decoration: none;
@@ -84,13 +93,6 @@ body {
     background-size: 100% 1px;
     background-repeat: no-repeat;
     background-position: bottom left;
-}
-
-/* ホバー時のアニメーション */
-.header li.line button:hover,
-.header li.line a:hover {
-    background-size: 100% var(--line-width), var(--line-width) 100%, 100% var(--line-width), var(--line-width) 100%;
-    transition-delay: 0s, 0s, 0.15s, 0.3s;
 }
 
 /* Volumeボタン（ミュート時の線） */

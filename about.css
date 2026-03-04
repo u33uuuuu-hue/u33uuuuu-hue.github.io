@@ -1,7 +1,9 @@
 @charset "utf-8";
 
+@import url("https://use.typekit.net/ngr1zic.css");
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
 
 
 
@@ -9,8 +11,8 @@ body {
     margin: 0;
     overflow: auto;
     overflow-x: hidden;
-    background: #fff;
-    font-family: "Inter", sans-serif;
+    background: #f8f8f8;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
     width: 100vw;
     position: relative;
 
@@ -44,7 +46,7 @@ body {
     padding-right: 20px;
     padding-top: 20px;
     padding-bottom: 30px;
-    background-color: #ffffff;
+    background-color: #f8f8f8;
 
     @media (max-width: 767px) {
         padding-right: 5px;
@@ -103,6 +105,7 @@ body {
     background-repeat: no-repeat;
     background-position: bottom left;
 }
+
 /* ホバー時のアニメーション */
 .header li.line button:hover,
 .header li.line a:hover {
@@ -265,7 +268,7 @@ body {
 }
 
 .on {
-    background-color: #fff;
+    background-color: #f8f8f8;
     border-radius: 15rem;
 
     padding-left: 8px;
@@ -276,7 +279,7 @@ body {
 
 
 .text {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 300;
     width: 45vw;
 
@@ -285,6 +288,7 @@ body {
     overflow-wrap: break-word;
     overflow-wrap: anywhere;
     margin-left: 10px;
+    line-height: 1.8;
 
     @media (max-width: 1024px) {
         order: 4;
@@ -292,10 +296,11 @@ body {
         text-align: left;
         font-size: 16px;
         font-weight: 300;
-        line-height: 1.5;
+
         margin-bottom: 5px;
         margin-top: 20px;
         margin-left: 30px;
+        line-height: 1.75;
 
 
     }
